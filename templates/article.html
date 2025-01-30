@@ -1,3 +1,4 @@
+{% import 'pcs/comments.html' as pcs with context %}
 {% extends "base.html" %}
 
 {% block meta %}
@@ -122,5 +123,6 @@
 
   {% include "partial/disqus.html" %}
   {% include "partial/isso.html" %}
+  {{ pcs.comments_quickstart("alicef+comments", "riseup.net") }}
 </article>
 {% endblock %}
