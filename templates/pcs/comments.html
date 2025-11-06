@@ -97,6 +97,7 @@
 				{# Piwik Track click on comment button
 				onclick="javascript:_paq.push(['trackEvent', 'comment', '{{ article.title }}', document.getElementById('pcs-comment-form-input-textarea').value]);" #}
 				>Post via email</button>
+		<button type="button" id="pcs-comment-send-github">Send to GitHub</button>
 
 		{% if PELICAN_COMMENT_SYSTEM_FEED and article %}
 			<a href="{{ SITEURL }}/{{ PELICAN_COMMENT_SYSTEM_FEED|format(article.slug) }}">
@@ -197,6 +198,20 @@
 					$(location).attr('href', CommentSystem.getMailtoLink("{{ article.slug }}"));
 				}
 			);
+		});
+		$(document).ready(function() {
+			var btn = document.getElementById('pcs-comment-send-github');
+			if (!btn) { return; }
+			btn.addEventListener('click', function(){
+				var el = document.getElementById('pcs-comment-form-input-replyto');
+				var slug = el ? el.value : (document.title || 'article');
+				try {
+					var url = CommentSystem.getGitHubIssueLink("{{ article.slug }}");
+					window.open(url, '_blank', 'noopener,noreferrer');
+				} catch(e) {
+					location.href = 'https://github.com/' + (CommentSystem.github_owner + '/' + CommentSystem.github_repo) + '/issues/new';
+				}
+			});
 		});
 	</script>
 {% endif %}
