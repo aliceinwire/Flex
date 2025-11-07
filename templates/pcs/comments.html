@@ -82,6 +82,10 @@
 			<input  id="pcs-comment-form-input-name" type="text" placeholder="Enter your name or nickname" />
 		</fieldset>
 		<fieldset>
+			<label for="pcs-comment-form-input-email">Email</label>
+			<input  id="pcs-comment-form-input-email" type="text" placeholder="Enter your email (optional)" />
+		</fieldset>
+		<fieldset>
 			<label for="pcs-comment-form-input-website">Website</label>
 			<input  id="pcs-comment-form-input-website" type="text" placeholder="Enter your website (optional)" />
 		</fieldset>
@@ -92,11 +96,7 @@
 			<div style="display: none; " id="pcs-comment-form-display-replyto"></div>
 		</fieldset>
 
-		<button type="submit"
-				id="pcs-comment-form-button-submit"
-				{# Piwik Track click on comment button
-				onclick="javascript:_paq.push(['trackEvent', 'comment', '{{ article.title }}', document.getElementById('pcs-comment-form-input-textarea').value]);" #}
-				>Post via email</button>
+		<button type="submit" id="pcs-comment-form-button-submit">Post via email</button>
 		<button type="button" id="pcs-comment-send-github">Send to GitHub</button>
 
 		{% if PELICAN_COMMENT_SYSTEM_FEED and article %}

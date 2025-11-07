@@ -58,11 +58,12 @@ var CommentSystem = {
 			norm = Math.abs(Math.floor(num));
 			return (norm < 10 ? '0' : '') + norm;
 		};
+		var email = $("#pcs-comment-form-input-email").val() || '';
 		var body = ''
 			+ 'Hey,\nI posted a new comment on ' + document.URL + '\n\nGreetings ' + $("#pcs-comment-form-input-name").val() + '\n\n\n'
 			+ 'Raw comment data:\n'
 			+ '----------------------------------------\n'
-			+ 'email: \n' // just that I don't forget to write it down
+			+ 'email: ' + email + '\n'
 			+ 'date: ' + now.getFullYear()
 					+ '-' + pad(now.getMonth()+1)
 					+ '-' + pad(now.getDate())
@@ -113,8 +114,8 @@ var CommentSystem = {
 		var body = ''
 			+ 'Hey,\nI posted a new comment on ' + document.URL + '\n\nGreetings ' + $("#pcs-comment-form-input-name").val() + '\n\n\n'
 			+ 'Raw comment data:\n'
-			+ '----------------------------------------\n'
-			+ 'email: ' + email + '\n' // just that I don't forget to write it down
+			+ '```md\n'
+			+ 'email: ' + email + '\n'
 			+ 'date: ' + now.getFullYear()
 					+ '-' + pad(now.getMonth()+1)
 					+ '-' + pad(now.getDate())
@@ -140,7 +141,7 @@ var CommentSystem = {
 		}
 		body += '\n'
 			+ $("#pcs-comment-form-input-textarea").val() + '\n'
-			+ '----------------------------------------\n';
+			+ '```\n';
 
 		var repo = this.github_owner + '/' + this.github_repo;
 		var link = 'https://github.com/' + repo + '/issues/new?title='
